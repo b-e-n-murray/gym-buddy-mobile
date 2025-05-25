@@ -18,9 +18,10 @@ type Workout struct {
 }
 
 type Exercise struct {
-	ID            uuid.UUID
+	ExerciseId    string
 	Name          string
-	DemoUrl       string
+	GifUrl        string
+	Instructions  []string
 	TargetMuscles []Muscle
 	Equipments    []string
 	Favourite     bool
@@ -81,12 +82,13 @@ func (w Workout) RemoveExercises(exsToRemove ...Exercise) error {
 	return nil
 }
 
-func NewExercise(name string, equips []string, targets []Muscle, isFavourite bool) Exercise {
+func NewExercise(id, name string, equips, instructions []string, targets []Muscle, isFavourite bool) Exercise {
 	return Exercise{
-		ID:            uuid.New(),
+		ExerciseId:    id,
 		Name:          name,
 		TargetMuscles: targets,
-		DemoUrl:       "",
+		GifUrl:        "",
+		Instructions:  instructions,
 		Equipments:    equips,
 		Favourite:     isFavourite,
 	}

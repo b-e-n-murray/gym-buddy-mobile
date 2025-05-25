@@ -3,14 +3,14 @@ package main
 import (
 	"errors"
 	"fmt"
-	exercises "gym_buddy_mobile/backend/server"
+	"gym_buddy_mobile/backend/server"
 	"net/http"
 	"os"
 )
 
 func main() {
-	http.HandleFunc("/exercises", exercises.HandleGetAllExercisesRequest)
-	http.HandleFunc("/exercises/id", exercises.HandleGetExerciseRequest) // TODO: pattern to include id from client.
+	http.HandleFunc("/exercises", server.HandleGetAllExercisesRequest)
+	http.HandleFunc("/exercises/{id}", server.HandleGetExerciseRequest)
 
 	err := http.ListenAndServe(":3000", nil)
 	if errors.Is(err, http.ErrServerClosed) {
