@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_buddy_mobile/workout_tile.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
-        title: 'Namer App',
+        title: 'Gym Buddy',
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
@@ -75,9 +76,21 @@ class MyHomePage extends StatelessWidget {
           )
         ],
       ),
-      body: Container(
-        padding: EdgeInsets.all(16.0),
-        child: Text('Chest Day 1'),
+      body: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              'Welcome back, Ben',
+              style: TextStyle(
+                  fontFamily: 'Calibri',
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          // Loop over workouts:
+          WorkoutTile()
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
