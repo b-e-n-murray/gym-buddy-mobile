@@ -89,7 +89,20 @@ class MyHomePage extends StatelessWidget {
             ),
           ),
           // Loop over workouts:
-          WorkoutTile()
+          WorkoutTile(
+            workoutName: 'Push Day',
+            previewExercises: ['Bench Press', 'Tricep dips'],
+            targetMuscles: ['Chest', 'Shoulders', 'Triceps'],
+            imageLink:
+                'https://cdn.shopify.com/s/files/1/1127/3530/files/bench-mistakes-01.png?v=1492845884',
+            isFavourite: true,
+          ),
+          WorkoutTile(
+            workoutName: 'Leg Day',
+            previewExercises: ['Leg Press', 'Barbell squat'],
+            targetMuscles: ['Quads', 'Hamstrings', 'Calves'],
+            isFavourite: false,
+          )
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

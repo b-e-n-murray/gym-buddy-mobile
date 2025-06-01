@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 
 class WorkoutTile extends StatelessWidget {
+  // TODO: Make stateful to handle toggling favourite.
+  WorkoutTile({
+    required this.workoutName,
+    required this.previewExercises,
+    required this.targetMuscles,
+    required this.isFavourite,
+    this.imageLink,
+  });
+  final String workoutName;
+  final List<String> previewExercises;
+  final List<String> targetMuscles;
+  final String? imageLink;
+  bool isFavourite;
   @override
   Widget build(BuildContext context) {
-    final workoutName = "Ben's Push Day";
-    final previewExercises = ["Bench press", "Pec Deck"];
-    final muscles = ["Chest", "Shoulders", "Triceps"];
-
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black, width: 0.5),
@@ -42,7 +51,8 @@ class WorkoutTile extends StatelessWidget {
               ],
               image: DecorationImage(
                 image: NetworkImage(
-                  'https://cdn.shopify.com/s/files/1/1127/3530/files/bench-mistakes-01.png?v=1492845884',
+                  imageLink ??
+                      'https://www.creativefabrica.com/wp-content/uploads/2019/10/01/Bench-press-barbell-gym-workout-icon-by-Hoeda80-580x386.jpg',
                 ),
                 fit: BoxFit.cover,
               ),
@@ -51,15 +61,33 @@ class WorkoutTile extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width - 20,
             padding: EdgeInsets.fromLTRB(15, 8, 0, 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
+              spacing:
+                  170, // TODO: Revisit - widget is pushed further depending on length of text.
               children: [
-                Text(
-                  workoutName,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      workoutName,
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    Text(previewExercises.join(', ')),
+                    Text(targetMuscles.join(', ')),
+                  ],
                 ),
-                Text(previewExercises.join(', ')),
-                Text(muscles.join(', ')),
+                IconButton(
+                  onPressed: () => {
+                    print('toggling isFavourite for $workoutName'),
+                    // isFavourite = !isFavourite,
+                  },
+                  icon: Icon(
+                    Icons.favorite,
+                    size: 28,
+                    color: isFavourite ? Colors.redAccent : Colors.blueGrey,
+                  ),
+                ),
               ],
             ),
           ),
