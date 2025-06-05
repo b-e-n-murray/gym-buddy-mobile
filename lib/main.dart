@@ -3,7 +3,9 @@ import 'package:gym_buddy_mobile/workout_tile.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(
+    home: MyHomePage(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -17,7 +19,6 @@ class MyApp extends StatelessWidget {
         title: 'Gym Buddy',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         ),
         home: MyHomePage(),
       ),
@@ -25,22 +26,19 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyAppState extends ChangeNotifier {
-  // var current = WordPair.random();
-}
+class MyAppState extends ChangeNotifier {}
 
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                const Color.fromARGB(255, 16, 36, 90),
-                const Color.fromARGB(255, 72, 51, 165)
+                Color.fromARGB(255, 17, 41, 61),
+                Color.fromARGB(255, 43, 104, 153)
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -49,7 +47,8 @@ class MyHomePage extends StatelessWidget {
         ),
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Icon(Icons.fitness_center, size: 30, color: Colors.white),
+          child: Icon(Icons.fitness_center,
+              size: 30, color: const Color.fromARGB(218, 255, 255, 255)),
         ),
         title: Text(
           'Gym Buddy',
@@ -102,10 +101,17 @@ class MyHomePage extends StatelessWidget {
             previewExercises: ['Leg Press', 'Barbell squat'],
             targetMuscles: ['Quads', 'Hamstrings', 'Calves'],
             isFavourite: false,
+            imageLink:
+                'https://th.bing.com/th/id/R.327180e0cc8f55f4ddbacc67fa88092f?rik=Lqu17KIV%2fGrKaw&riu=http%3a%2f%2fwww.dmoose.com%2fcdn%2fshop%2farticles%2fbarbell_squat.jpg%3fv%3d1653488200&ehk=%2f8GyzR85OjUd%2fBOcCHTFQJJ%2bAO%2bsQb%2bAhzFVIGKI1rI%3d&risl=&pid=ImgRaw&r=0',
           )
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0,
+        selectedItemColor: Colors.blueAccent,
+        backgroundColor: const Color.fromARGB(255, 17, 41, 61),
+        unselectedItemColor: Colors.white,
+        elevation: 100,
         items: [
           BottomNavigationBarItem(
               icon: Icon(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class WorkoutTile extends StatelessWidget {
-  // TODO: Make stateful to handle toggling favourite.
+class WorkoutTile extends StatefulWidget {
+  // TODO: Fix immutability problem
   WorkoutTile({
     required this.workoutName,
     required this.previewExercises,
@@ -14,6 +14,12 @@ class WorkoutTile extends StatelessWidget {
   final List<String> targetMuscles;
   final String? imageLink;
   bool isFavourite;
+
+  @override
+  State<WorkoutTile> createState() => _WorkoutTileState();
+}
+
+class _WorkoutTileState extends State<WorkoutTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -51,7 +57,7 @@ class WorkoutTile extends StatelessWidget {
               ],
               image: DecorationImage(
                 image: NetworkImage(
-                  imageLink ??
+                  widget.imageLink ??
                       'https://www.creativefabrica.com/wp-content/uploads/2019/10/01/Bench-press-barbell-gym-workout-icon-by-Hoeda80-580x386.jpg',
                 ),
                 fit: BoxFit.cover,
@@ -62,30 +68,33 @@ class WorkoutTile extends StatelessWidget {
             width: MediaQuery.of(context).size.width - 20,
             padding: EdgeInsets.fromLTRB(15, 8, 0, 0),
             child: Row(
-              spacing:
-                  170, // TODO: Revisit - widget is pushed further depending on length of text.
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      workoutName,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                    Text(previewExercises.join(', ')),
-                    Text(targetMuscles.join(', ')),
-                  ],
+                SizedBox(
+                  width: MediaQuery.of(context).size.width - 100,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.workoutName,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      Text(widget.previewExercises.join(', ')),
+                      Text(widget.targetMuscles.join(', ')),
+                    ],
+                  ),
                 ),
                 IconButton(
                   onPressed: () => {
-                    print('toggling isFavourite for $workoutName'),
-                    // isFavourite = !isFavourite,
+                    setState(() {
+                      widget.isFavourite = !widget.isFavourite;
+                    })
                   },
                   icon: Icon(
                     Icons.favorite,
                     size: 28,
-                    color: isFavourite ? Colors.redAccent : Colors.blueGrey,
+                    color:
+                        widget.isFavourite ? Colors.redAccent : Colors.blueGrey,
                   ),
                 ),
               ],
