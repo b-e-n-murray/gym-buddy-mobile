@@ -13,7 +13,7 @@ class WorkoutsPage extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(16.0),
           child: Text(
-            'Welcome back, Ben',
+            'Your Workouts',
             style: TextStyle(
                 fontFamily: 'Calibri',
                 fontSize: 30,

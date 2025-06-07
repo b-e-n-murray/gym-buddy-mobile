@@ -3,6 +3,15 @@ import 'package:flutter/material.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Text('Home page');
+    return Container(
+      padding: EdgeInsets.all(16.0),
+      child: Center(
+        child: Text(
+          'Welcome back, Ben',
+          style: TextStyle(
+              fontFamily: 'Calibri', fontSize: 30, fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
   }
 }
