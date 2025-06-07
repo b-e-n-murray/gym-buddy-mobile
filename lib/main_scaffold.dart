@@ -28,14 +28,10 @@ class _MainScaffoldState extends State<MainScaffold> {
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Text(
-            'Gym Buddy',
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
+          child: SizedBox(
+              height: 180,
+              width: 230,
+              child: Image.asset('assets/app_title.png')),
         ),
       ),
       body: IndexedStack(
