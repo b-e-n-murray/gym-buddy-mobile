@@ -37,8 +37,7 @@ class _WorkoutTileState extends State<WorkoutTile> {
         ],
       ),
       width: MediaQuery.of(context).size.width - 20,
-      height: MediaQuery.of(context).size.height /
-          3.195, // TODO: May need to revist.
+      height: MediaQuery.of(context).size.height / 3.75,
       margin: EdgeInsets.all(15),
       child: Column(
         children: [
