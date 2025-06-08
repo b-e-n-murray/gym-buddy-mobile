@@ -1,19 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:gym_buddy_mobile/pages/home_page.dart';
+import 'package:gym_buddy_mobile/pages/new_workout_page.dart';
 import 'package:gym_buddy_mobile/pages/settings_page.dart';
 import 'package:gym_buddy_mobile/pages/workouts_page.dart';
 
 class MainScaffold extends StatefulWidget {
+  MainScaffold({this.pageIndex = 0});
+  final int pageIndex;
+
   @override
   State<MainScaffold> createState() => _MainScaffoldState();
 }
 
 class _MainScaffoldState extends State<MainScaffold> {
-  int _selectedIndex = 0;
+  late int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.pageIndex;
+  }
 
   final List<Widget> _pages = [
     HomePage(),
     WorkoutsPage(),
+    NewWorkoutPage(),
     SettingsPage(),
   ];
 
@@ -39,6 +50,7 @@ class _MainScaffoldState extends State<MainScaffold> {
         children: _pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         onTap: _onItemTapped,
         currentIndex: _selectedIndex,
         items: [
@@ -51,9 +63,15 @@ class _MainScaffoldState extends State<MainScaffold> {
           BottomNavigationBarItem(
               key: Key('workouts'),
               icon: Icon(
-                Icons.sports_gymnastics_rounded,
+                Icons.fitness_center_sharp,
               ),
               label: "Workouts"),
+          BottomNavigationBarItem(
+              key: Key('new'),
+              icon: Icon(
+                Icons.add,
+              ),
+              label: "New"),
           BottomNavigationBarItem(
               key: Key('settings'),
               icon: Icon(

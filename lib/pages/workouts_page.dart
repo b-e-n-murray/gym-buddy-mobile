@@ -74,29 +74,45 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
-        Container(
-          padding: EdgeInsets.all(16.0),
-          child: Text(
-            'Your Workouts',
-            style: TextStyle(
-                fontFamily: 'Calibri',
-                fontSize: 30,
-                fontWeight: FontWeight.bold),
-          ),
+        Column(
+          children: [
+            Container(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'Your Workouts',
+                style: TextStyle(
+                    fontFamily: 'Calibri',
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            for (var workout in tempWorkouts)
+              GestureDetector(
+                onTap: () => _openWorkoutOverview(workout),
+                child: WorkoutTile(
+                  workoutName: workout.name,
+                  previewExercises: workout.previewExercises,
+                  targetMuscles: workout.targetMuscles,
+                  imageLink: workout.imageLink,
+                  isFavourite: workout.isFavourite,
+                ),
+              ),
+          ],
         ),
-        for (var workout in tempWorkouts)
-          GestureDetector(
-            onTap: () => _openWorkoutOverview(workout),
-            child: WorkoutTile(
-              workoutName: workout.name,
-              previewExercises: workout.previewExercises,
-              targetMuscles: workout.targetMuscles,
-              imageLink: workout.imageLink,
-              isFavourite: workout.isFavourite,
+        Positioned(
+          bottom: 25,
+          right: 25,
+          child: FloatingActionButton(
+            onPressed: () =>
+                {Navigator.pushReplacementNamed(context, '/new-indirect')},
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
             ),
           ),
+        )
       ],
     );
   }
