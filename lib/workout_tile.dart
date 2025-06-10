@@ -1,19 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gym_buddy_mobile/types/workout.dart';
 
 class WorkoutTile extends StatefulWidget {
   // TODO: Fix immutability problem
-  WorkoutTile({
-    required this.workoutName,
-    required this.previewExercises,
-    required this.targetMuscles,
-    required this.isFavourite,
-    this.imageLink,
-  });
-  final String workoutName;
-  final List<String> previewExercises;
-  final List<String> targetMuscles;
-  final String? imageLink;
-  bool isFavourite;
+  WorkoutTile({required this.workout});
+  final Workout workout;
 
   @override
   State<WorkoutTile> createState() => _WorkoutTileState();
@@ -56,7 +47,7 @@ class _WorkoutTileState extends State<WorkoutTile> {
               ],
               image: DecorationImage(
                 image: NetworkImage(
-                  widget.imageLink ??
+                  widget.workout.imageLink ??
                       'https://www.creativefabrica.com/wp-content/uploads/2019/10/01/Bench-press-barbell-gym-workout-icon-by-Hoeda80-580x386.jpg',
                 ),
                 fit: BoxFit.cover,
@@ -74,26 +65,27 @@ class _WorkoutTileState extends State<WorkoutTile> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.workoutName,
+                        widget.workout.name,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
-                      Text(widget.previewExercises.join(', ')),
-                      Text(widget.targetMuscles.join(', ')),
+                      Text(widget.workout.previewExercises.join(', ')),
+                      Text(widget.workout.targetMuscles.join(', ')),
                     ],
                   ),
                 ),
                 IconButton(
                   onPressed: () => {
                     setState(() {
-                      widget.isFavourite = !widget.isFavourite;
+                      widget.workout.isFavourite = !widget.workout.isFavourite;
                     })
                   },
                   icon: Icon(
                     Icons.favorite,
                     size: 28,
-                    color:
-                        widget.isFavourite ? Colors.redAccent : Colors.blueGrey,
+                    color: widget.workout.isFavourite
+                        ? Colors.redAccent
+                        : Colors.blueGrey,
                   ),
                 ),
               ],
