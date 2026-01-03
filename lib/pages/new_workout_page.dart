@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_buddy_mobile/types/workout.dart';
 
 class NewWorkoutPage extends StatefulWidget {
   const NewWorkoutPage({super.key});
@@ -8,28 +9,26 @@ class NewWorkoutPage extends StatefulWidget {
 }
 
 class _NewWorkoutPageState extends State<NewWorkoutPage> {
+  final List<Workout> suggestedWorkouts = [];
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Center(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'New Workout',
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          child: Row(children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                'New Workout',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
-        ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width / 1.3,
-          child: TextFormField(
-            decoration: InputDecoration(
-              label: Text('Name'),
+            FloatingActionButton(
+              onPressed: () => {},
+              child: Icon(Icons.add),
             ),
-            // initialValue: 'My new workout',
-            onChanged: (string) {},
-          ),
+          ]),
         ),
 
         // 1. Exercise selection should redirect to Exercise Catalog.
