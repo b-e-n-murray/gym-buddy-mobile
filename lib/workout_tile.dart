@@ -40,15 +40,24 @@ class _WorkoutTileState extends State<WorkoutTile> {
               topLeft: Radius.circular(16),
               topRight: Radius.circular(16),
             ),
-            child: Image.network(
-              widget.workout.imageLink ??
-                  'https://www.creativefabrica.com/wp-content/uploads/2019/10/01/Bench-press-barbell-gym-workout-icon-by-Hoeda80-580x386.jpg',
-              height: height * 0.55,
-              width: double.infinity,
-              fit: BoxFit.cover,
-              errorBuilder: (context, _, __) =>
-                  Container(color: Colors.grey[300]),
-            ),
+            child: widget.workout.imageLink == ''
+                ? Image.asset(
+                    'assets/app_title.png',
+                    height: height * 0.55,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    color: const Color.fromARGB(186, 177, 172, 172),
+                    errorBuilder: (context, _, __) =>
+                        Container(color: Colors.grey[300]),
+                  )
+                : Image.network(
+                    widget.workout.imageLink,
+                    height: height * 0.55,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, _, __) =>
+                        Container(color: Colors.grey[300]),
+                  ),
           ),
 
           // --- Text and favourite icon ---

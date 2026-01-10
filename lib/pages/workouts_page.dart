@@ -25,7 +25,7 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
       'Leg Day',
       ['Leg Press', 'Barbell squat'],
       ['Quads', 'Hamstrings', 'Calves'],
-      'https://th.bing.com/th/id/R.327180e0cc8f55f4ddbacc67fa88092f?rik=Lqu17KIV%2fGrKaw&riu=http%3a%2f%2fwww.dmoose.com%2fcdn%2fshop%2farticles%2fbarbell_squat.jpg%3fv%3d1653488200&ehk=%2f8GyzR85OjUd%2fBOcCHTFQJJ%2bAO%2bsQb%2bAhzFVIGKI1rI%3d&risl=&pid=ImgRaw&r=0',
+      '',
       true,
     )
   ];

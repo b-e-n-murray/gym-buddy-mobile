@@ -30,13 +30,19 @@ class _ExpandedWorkoutTileState extends State<ExpandedWorkoutTile> {
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    Image.network(
-                      widget.workout.imageLink ??
-                          'https://www.creativefabrica.com/wp-content/uploads/2019/10/01/Bench-press-barbell-gym-workout-icon-by-Hoeda80-580x386.jpg',
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, _, __) =>
-                          Container(color: Colors.grey[300]),
-                    ),
+                    widget.workout.imageLink == ''
+                        ? Image.asset(
+                            'assets/app_title.png',
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, _, __) =>
+                                Container(color: Colors.grey[300]),
+                          )
+                        : Image.network(
+                            widget.workout.imageLink,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, _, __) =>
+                                Container(color: Colors.grey[300]),
+                          ),
                     const DecoratedBox(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
@@ -54,7 +60,7 @@ class _ExpandedWorkoutTileState extends State<ExpandedWorkoutTile> {
 
           // Content
           SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             sliver: SliverToBoxAdapter(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,16 +69,6 @@ class _ExpandedWorkoutTileState extends State<ExpandedWorkoutTile> {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Expanded(
-                        child: Text(
-                          widget.workout.name,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: isCompact ? 22 : 28,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
                       IconButton(
                         onPressed: () {
                           setState(() {
@@ -88,16 +84,32 @@ class _ExpandedWorkoutTileState extends State<ExpandedWorkoutTile> {
                           size: 30,
                         ),
                       ),
+                      Expanded(
+                        child: Text(
+                          widget.workout.name,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: isCompact ? 22 : 28,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      FloatingActionButton(
+                        onPressed: () => {},
+                        child: Text(
+                          "Train",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              shadows: [
+                                Shadow(
+                                    color:
+                                        const Color.fromARGB(255, 10, 52, 124),
+                                    blurRadius: 5)
+                              ]),
+                        ),
+                      )
                     ],
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Muscles worked:',
-                    style: TextStyle(
-                      fontSize: isCompact ? 16 : 18,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black87,
-                    ),
                   ),
                   Text(
                     widget.workout.targetMuscles.join(', '),
@@ -106,9 +118,8 @@ class _ExpandedWorkoutTileState extends State<ExpandedWorkoutTile> {
                       color: Colors.black54,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 10),
 
-                  // Exercises List
                   ...widget.workout.previewExercises.map(
                     (exercise) => Card(
                       margin: const EdgeInsets.only(bottom: 14),
