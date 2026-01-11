@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:gym_buddy_mobile/pages/exercise_catalog.dart';
 import 'package:gym_buddy_mobile/pages/home_page.dart';
 import 'package:gym_buddy_mobile/pages/new_workout_page.dart';
 import 'package:gym_buddy_mobile/pages/settings_page.dart';
@@ -20,6 +21,7 @@ class _MainScaffoldState extends State<MainScaffold> {
     HomePage(),
     WorkoutsPage(),
     NewWorkoutPage(),
+    ExerciseCatalog(),
     SettingsPage(),
   ];
 
@@ -101,6 +103,10 @@ class _MainScaffoldState extends State<MainScaffold> {
                 BottomNavigationBarItem(
                   icon: Icon(Icons.add_circle_outline_rounded),
                   label: "New",
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.book),
+                  label: "Catalog",
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.settings_rounded),

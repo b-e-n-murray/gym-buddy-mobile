@@ -28,7 +28,6 @@ class SettingsPage extends StatelessWidget {
     return Column(
       children: [
         _settingsTile("Account details", () {}),
-        _settingsTile("Exercise catalog", () {}),
         _settingsTile("Help", () {}),
         _settingsTile("Report a problem", () {}),
         _settingsTile("Advanced settings", () {}),

@@ -109,10 +109,14 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: MainScaffold(),
+
+      // Routes to stay fixed for nav bar pages.
+      // Further navigation inside of pages should could use their own Navigator or indexedStack.
       routes: {
         '/workouts': (context) => WorkoutsPage(),
-        '/new-indirect': (context) => MainScaffold(pageIndex: 2),
         '/new': (context) => NewWorkoutPage(),
+        '/new-indirect': (context) => MainScaffold(pageIndex: 2),
+        '/catalog': (context) => MainScaffold(pageIndex: 4),
         '/settings': (context) => HomePage(),
       },
     );
